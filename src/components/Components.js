@@ -21,7 +21,7 @@ import studentIcon from '../images/student-icon.png';
 import workIcon from '../images/work-icon.png';
 
 // ==============================================
-// PROJECT DATA WITH DETAILED INFO
+// PROJECT DATA WITH DETAILED INFO & MEDIA GALLERY
 // ==============================================
 
 export const projectsData = [
@@ -31,6 +31,12 @@ export const projectsData = [
     description: 'A React Native app where students can create tasks, track assignments, and stay organized.',
     type: 'Mobile Development',
     image: projectImage1,
+    // Media gallery for project detail page - add more images/videos here
+    media: [
+      { type: 'image', src: projectImage1, alt: 'Task Manager Home Screen' },
+      // Example: { type: 'image', src: projectImage1_2, alt: 'Task List View' },
+      // Example: { type: 'video', src: 'https://youtube.com/embed/VIDEO_ID', alt: 'Demo Video' },
+    ],
     overview: 'A comprehensive task management application designed specifically for students to help them stay on top of their academic responsibilities.',
     technologies: ['React Native', 'JavaScript', 'Expo', 'AsyncStorage', 'React Navigation'],
     features: [
@@ -49,6 +55,10 @@ export const projectsData = [
     description: 'An immersive VR experience built with Unity, where players must solve puzzles to escape a silent space station.',
     type: 'Others',
     image: projectImage2,
+    media: [
+      { type: 'image', src: projectImage2, alt: 'VR Escape Room Environment' },
+      { type: 'image', src: projectImage2, alt: 'VR Escape Room Environment' },
+    ],
     overview: 'An immersive virtual reality escape room game set in a mysterious abandoned space station where players must solve interconnected puzzles to escape.',
     technologies: ['Unity 3D', 'C#', 'VR SDK', 'Blender', '3D Modeling'],
     features: [
@@ -67,6 +77,9 @@ export const projectsData = [
     description: 'Designed a stylish Instagram grid in Photoshop, showcasing iconic landmarks with a travel promo.',
     type: 'Digital Design',
     image: projectImage3,
+    media: [
+      { type: 'image', src: projectImage3, alt: 'Instagram Travel Grid Design' },
+    ],
     overview: 'A cohesive Instagram feed design project featuring a curated collection of travel photographs arranged in an aesthetically pleasing grid layout.',
     technologies: ['Photoshop', 'Lightroom', 'Color Theory', 'Visual Design', 'Social Media Marketing'],
     features: [
@@ -144,11 +157,15 @@ export function ProjectModal({ project, onClose }) {
 
   return (
     <div className="project-modal-overlay" onClick={handleOverlayClick}>
-      <div className="project-modal">
+      <div className="project-modal project-modal-horizontal">
         <button className="modal-close" onClick={onClose} aria-label="Close modal">×</button>
         
-        <img src={project.image} alt={project.title} className="modal-image" />
+        {/* Left side - Image */}
+        <div className="modal-image-container">
+          <img src={project.image} alt={project.title} className="modal-image" />
+        </div>
         
+        {/* Right side - Content */}
         <div className="modal-content">
           <h2>{project.title}</h2>
           <span className="project-type-badge">{project.type}</span>
@@ -491,11 +508,10 @@ export function Education() {
           </div>
 
           <div className="timeline-content">
+            <div className="timeline-year">{edu.year}</div>
             <h4>{edu.degree}</h4>
             <p>{edu.institution}</p>
           </div>
-
-          <div className="timeline-year">{edu.year}</div>
         </div>
       ))}
     </div>
@@ -549,6 +565,7 @@ export function WorkExperience() {
           </div>
 
           <div className="timeline-content">
+            <div className="timeline-year">{job.year}</div>
             <h4>{job.title}</h4>
             <p><b>{job.company}</b></p>
             <ul>
@@ -557,8 +574,6 @@ export function WorkExperience() {
               ))}
             </ul>
           </div>
-
-          <div className="timeline-year">{job.year}</div>
         </div>
       ))}
     </div>

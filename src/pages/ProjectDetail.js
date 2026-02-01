@@ -1,11 +1,12 @@
 // src/pages/ProjectDetail.js
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Navbar, Footer, projectsData } from '../components/Components';
 
 export function ProjectDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
+  const [selectedMediaIndex, setSelectedMediaIndex] = useState(0);
   
   // Find the project by ID
   const project = projectsData.find(p => p.id === parseInt(id));
@@ -22,6 +23,21 @@ export function ProjectDetail() {
     return null;
   }
 
+  const media = project.media || [{ type: 'image', src: project.image, alt: project.title }];
+  const selectedMedia = media[selectedMediaIndex];
+
+  const handleThumbnailClick = (index) => {
+    setSelectedMediaIndex(index);
+  };
+
+  const handlePrevious = () => {
+    setSelectedMediaIndex((prev) => (prev === 0 ? media.length - 1 : prev - 1));
+  };
+
+  const handleNext = () => {
+    setSelectedMediaIndex((prev) => (prev === media.length - 1 ? 0 : prev + 1));
+  };
+
   return (
     <div className="project-detail-page">
       <Navbar />
@@ -32,20 +48,80 @@ export function ProjectDetail() {
         </button>
 
         <div className="project-detail-hero">
-          <img 
-            src={project.image} 
-            alt={project.title} 
-            className="project-detail-image"
-          />
-          
+          {/* Main Media Display */}
+          <div className="media-gallery-container">
+            <div className="main-media-wrapper">
+              {selectedMedia.type === 'image' ? (
+                <img 
+                  src={selectedMedia.src} 
+                  alt={selectedMedia.alt || project.title}
+                  className="project-detail-image"
+                />
+              ) : (
+                <div className="video-wrapper">
+                  <iframe
+                    src={selectedMedia.src}
+                    title={selectedMedia.alt || 'Project Video'}
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    className="project-detail-video"
+                  />
+                </div>
+              )}
+
+              {/* Navigation Arrows - Only show if more than 1 media item */}
+              {media.length > 1 && (
+                <>
+                  <button 
+                    className="media-nav-arrow media-nav-left" 
+                    onClick={handlePrevious}
+                    aria-label="Previous media"
+                  >
+                    ‹
+                  </button>
+                  <button 
+                    className="media-nav-arrow media-nav-right" 
+                    onClick={handleNext}
+                    aria-label="Next media"
+                  >
+                    ›
+                  </button>
+                </>
+              )}
+            </div>
+
+            {/* Thumbnail Gallery - Only show if more than 1 media item */}
+            {media.length > 1 && (
+              <div className="thumbnail-gallery">
+                {media.map((item, index) => (
+                  <div
+                    key={index}
+                    className={`thumbnail-item ${index === selectedMediaIndex ? 'active' : ''}`}
+                    onClick={() => handleThumbnailClick(index)}
+                  >
+                    {item.type === 'image' ? (
+                      <img 
+                        src={item.src} 
+                        alt={item.alt || `Thumbnail ${index + 1}`}
+                      />
+                    ) : (
+                      <div className="video-thumbnail">
+                        <span className="play-icon">▶</span>
+                        <span className="video-label">Video</span>
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+
           <div className="project-detail-header">
             <h1>{project.title}</h1>
             
             <div className="project-detail-meta">
-              <div className="meta-item">
-                <span>📁</span>
-                <span>{project.type}</span>
-              </div>
+              <span className="project-type-tag">{project.type}</span>
             </div>
           </div>
         </div>
