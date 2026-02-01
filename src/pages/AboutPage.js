@@ -6,7 +6,7 @@ import { Navbar, Footer, SkillsAbout, Education, WorkExperience } from '../compo
 import faceImage from '../images/profile.jpg';
 import emailIcon from '../images/email-icon.png';
 import mobileIcon from '../images/mobile-icon.png';
-import linkedinIcon from '../images/linkedin.png';
+import linkedinIcon from '../images/linkedin-icon.png';
 
 export function AboutPage() {
   return (

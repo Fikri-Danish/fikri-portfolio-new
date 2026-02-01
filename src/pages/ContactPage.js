@@ -4,7 +4,7 @@ import { Navbar, Footer } from '../components/Components';
 import emailjs from '@emailjs/browser';
 import emailIcon from '../images/email-icon.png';
 import phoneIcon from '../images/mobile-icon.png';
-import linkedinIcon from '../images/linkedin.png';
+import linkedinIcon from '../images/linkedin-icon.png';
 
 export function ContactPage() {
   const form = useRef();
