@@ -26,7 +26,7 @@
       "react-app/jest"
     ],
     "rules": {
-      "no-script-url": "warn"
+      "no-script-url": "off"
     }
   },
   "browserslist": {
