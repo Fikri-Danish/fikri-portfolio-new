@@ -16,6 +16,7 @@ import emailIcon from '../images/email-icon.png';
 import phoneIcon from '../images/mobile-icon.png';
 import studentIcon from '../images/student-icon.png';
 import workIcon from '../images/work-icon.png';
+import certificateIcon from '../images/certificate-icon.png';
 
 // Import project data from separate file
 import { projectsData } from '../data/projectsData';
@@ -149,8 +150,7 @@ export function Navbar() {
       <ul className="nav-links">
         <li><Link to="/">Home</Link></li>
         <li><Link to="/projectList">Projects</Link></li>
-        <li><Link to="/aboutPage">About</Link></li>
-        <li><Link to="/contact">Contact</Link></li>
+        <li><Link to="/aboutPage">About Me</Link></li>
       </ul>
 
       <Link to="/contact">
@@ -507,6 +507,49 @@ export function WorkExperience() {
           </div>
 
           <div className="timeline-year">{job.year}</div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+// ==============================================
+// CERTIFICATIONS COMPONENT
+// ==============================================
+
+export function Certifications() {
+  const certifications = [
+      {
+      title: "EDUSAVE MERIT BURSARY 2025",
+      institution: 'Ministry of Education',
+      year: '2025',
+      description: 'For achieving good academic performance and demonstrating good conduct',
+    },
+    {
+      title: "DIRECTOR'S LIST",
+      institution: 'Institute of Tech. Education',
+      year: '2023',
+      description: 'Meritorious academic performance',
+      academicYear: 'Academic Year 2022/2023'
+    },
+  ];
+
+  return (
+    <div className="timeline">
+      {certifications.map((cert, index) => (
+        <div className="timeline-item" key={index}>
+          <div className="timeline-icon">
+            <img src={certificateIcon} alt="Certificate icon" />
+          </div>
+
+          <div className="timeline-content">
+            <h4>{cert.title}</h4>
+            <p><b>{cert.institution}</b></p>
+            <p>{cert.description}</p>
+            {cert.academicYear && <p className="academic-year">{cert.academicYear}</p>}
+          </div>
+
+          <div className="timeline-year">{cert.year}</div>
         </div>
       ))}
     </div>

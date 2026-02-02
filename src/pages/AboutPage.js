@@ -1,7 +1,7 @@
 // src/pages/AboutPage.js
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Navbar, Footer, SkillsAbout, Education, WorkExperience } from '../components/Components';
+import { Navbar, Footer, SkillsAbout, Education, WorkExperience, Certifications } from '../components/Components';
 
 import faceImage from '../images/profile.jpg';
 import emailIcon from '../images/email-icon.png';
@@ -108,6 +108,12 @@ export function AboutPage() {
             <div className="work-experience-section">
               <h3>Work Experience</h3>
               <WorkExperience />
+            </div>
+
+            {/* Certifications Section */}
+            <div className="certifications-section">
+              <h3>Certifications</h3>
+              <Certifications />
             </div>
 
           </div>

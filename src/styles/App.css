@@ -1923,6 +1923,13 @@ body {
   line-height: 1.5;
 }
 
+.timeline-content .academic-year {
+  font-size: 13px;
+  color: var(--text-light);
+  font-style: italic;
+  margin-top: 5px;
+}
+
 .timeline-year {
   text-align: right;
   font-weight: bold;

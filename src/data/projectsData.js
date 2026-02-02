@@ -1,5 +1,5 @@
 // src/data/projectsData.js
-import projectImage1 from '../images/project1.png';
+import projectImage1a from '../imagesProjects/1a.png';
 
 import projectImage2a from '../imagesProjects/2a.png';
 import projectImage2b from '../imagesProjects/2b.png';
@@ -8,7 +8,10 @@ import projectImage2d from '../imagesProjects/2d.png';
 import projectImage2e from '../imagesProjects/2e.png';
 import projectImage2f from '../imagesProjects/2f.png';
 
-import projectImage3 from '../images/project3.png';
+import projectImage3a from '../imagesProjects/3a.gif';
+import projectImage3b from '../imagesProjects/3b.gif';
+import projectImage3c from '../imagesProjects/3c.gif';
+import projectImage3d from '../imagesProjects/3d.gif';
 
 import projectImage4a from '../imagesProjects/4a.png';
 import projectImage4b from '../imagesProjects/4b.png';
@@ -16,13 +19,19 @@ import projectImage4c from '../imagesProjects/4c.jpg';
 
 import projectImage5a from '../imagesProjects/5a.png';
 
+import projectImage6a from '../imagesProjects/6a.png';
+import projectImage6b from '../imagesProjects/6b.png';
+import projectImage6c from '../imagesProjects/6c.png';
+import projectImage6d from '../imagesProjects/6d.png';
+import projectImage6e from '../imagesProjects/6e.png';
+
 export const projectsData = [
     {
     id: 1,
     title: 'Personal Portfolio Website',
     description: 'A modern, responsive portfolio website built with React to showcase my projects, skills, and professional experience.',
     type: 'Web Development',
-    image: projectImage5a, // You'll need to add this image
+    image: projectImage1a, // You'll need to add this image
     overview: 'A comprehensive portfolio website designed to present my work as a Digital Design & Development student. The site serves as a central hub for potential employers, clients, and collaborators to explore my projects, understand my skill set, and get in touch.\n\nBuilt with modern web technologies, the portfolio emphasizes clean design, smooth navigation, and responsive layouts that work seamlessly across all devices.',
     technologies: ['React', 'React Router', 'JavaScript', 'CSS3', 'HTML5', 'EmailJS'],
     features: [
@@ -87,6 +96,49 @@ export const projectsData = [
   },
   {
     id: 3,
+    title: 'Green Activities Mobile App',
+    description: 'Team project: A mobile app that tracks eco-friendly activities aligned with Singapore’s Green Plan 2030.',
+    type: 'Mobile Development',
+    image: projectImage3a,
+    media: [
+      {
+        type: 'youtube',
+        src: 'https://youtu.be/4D9Tu-qLdOU'
+      },
+      {
+        type: 'image',
+        src: projectImage3a
+      },
+      {
+        type: 'image',
+        src: projectImage3b
+      },
+      {
+        type: 'image',
+        src: projectImage3c
+      },
+      {
+        type: 'image',
+        src: projectImage3d
+      },
+    ],
+    overview: 'Green Activities is a mobile application designed to help users track eco-friendly activities aligned with Singapore’s Green Plan 2030. Users can record, monitor, and earn milestones for sustainable actions, encouraging long-term engagement with green practices. The app connects to a backend web service (API) to store and retrieve data, ensuring activities persist across sessions and devices.',
+    technologies: ['React Native', 'JavaScript', 'REST API', 'Backend Integration', 'Mobile UI/UX'],
+    features: [
+      'User-friendly mobile interface',
+      'Integration with a backend web service',
+      'Data stored and retrieved via RESTful API calls',
+      'Error handling and input validation',
+      'Activity tracking aligned with Singapore’s Green Plan 2030 pillars',
+      'Support for multiple pillars per activity',
+      'Milestone system awarding titles every five activities',
+      'Persistent data across sessions and devices'
+    ],
+    challenges: 'Ensuring smooth API integration and data persistence across sessions while maintaining a user-friendly UI. Handling multiple pillars per activity and implementing milestone tracking required careful data structure design and validation.',
+    outcome: 'Successfully developed a functional mobile app that promotes sustainable practices, with reliable API integration and milestone rewards that encourage continued engagement.'
+  },
+  {
+    id: 4,
     title: 'AR Professional Name Card',
     description: 'A professional name card enhanced with augmented reality, revealing a 3D logo when scanned for a more engaging networking experience.',
     type: 'Others',
@@ -122,14 +174,14 @@ export const projectsData = [
     outcome: 'The project successfully delivers an AR-enabled professional name card that blends design, branding, and immersive technology. The final result demonstrates my ability to integrate multiple tools, Canva, Blender, and Unity, to create a polished AR experience suitable for modern professional networking and digital portfolios.'
   },
   {
-    id: 4,
+    id: 5,
     title: 'Instagram Travel Grid',
     description: 'Designed a stylish Instagram grid in Photoshop, showcasing iconic landmarks with a travel promo.',
     type: 'Digital Design',
-    image: projectImage3,
+    image: projectImage5a,
     // Single image - no gallery will be shown
     overview: 'A cohesive Instagram feed design project featuring a curated collection of travel photographs arranged in an aesthetically pleasing grid layout.',
-    technologies: ['Photoshop', 'Lightroom', 'Color Theory', 'Visual Design', 'Social Media Marketing'],
+    technologies: ['Photoshop'],
     features: [
       'Consistent color grading across all images',
       'Strategic grid layout planning',
@@ -141,22 +193,47 @@ export const projectsData = [
     outcome: 'Developed a visually stunning Instagram grid that effectively communicates the travel brand\'s identity and increases engagement.'
   },
   {
-    id: 5,
+    id: 6,
     title: 'Student Task Manager App',
-    description: 'A React Native app where students can create tasks, track assignments, and stay organized.',
+    description: 'A React Native task management app for students with section-based tracking and persistent storage using AsyncStorage.',
     type: 'Mobile Development',
-    image: projectImage1,
-    // For single image projects, use 'image' field
-    overview: 'A comprehensive task management application designed specifically for students to help them stay on top of their academic responsibilities.',
-    technologies: ['React Native', 'JavaScript', 'Expo', 'AsyncStorage', 'React Navigation'],
-    features: [
-      'Create and manage tasks with deadlines',
-      'Track assignment status (pending, in progress, completed)',
-      'Set priority levels for tasks',
-      'Receive notifications for upcoming deadlines',
-      'Dark mode support'
+    image: projectImage6a,
+    media: [
+      {
+        type: 'youtube',
+        src: 'https://youtu.be/tGvr8vkg95U'
+      },
+      {
+        type: 'image',
+        src: projectImage6a
+      },
+      {
+        type: 'image',
+        src: projectImage6b
+      },
+      {
+        type: 'image',
+        src: projectImage6c
+      },
+      {
+        type: 'image',
+        src: projectImage6d
+      },
+      {
+        type: 'image',
+        src: projectImage6e
+      }
     ],
-    challenges: 'Implementing persistent data storage and creating an intuitive user interface that works across different screen sizes.',
-    outcome: 'Successfully developed a fully functional app that helps students organize their academic life more efficiently.'
+    overview: 'This is a simple task-tracking app built with React Native. It helps users organize their tasks by grouping them into different sections such as To Do, In Progress, and Completed. Each task includes details like title, module, due date, and description. Tasks can be added, edited, moved between sections, or deleted.',
+    technologies: ['React Native', 'JavaScript', 'AsyncStorage', 'React Navigation'],
+    features: [
+      'Add new tasks with title, module, due date, and description',
+      'Edit and update tasks',
+      'Section-based task organization (To Do, In Progress, Completed)',
+      'AsyncStorage integration for data persistence',
+      'Clean and modern user interface'
+    ],
+    challenges: 'Implementing a clear section-based workflow and ensuring tasks persist across app sessions using AsyncStorage while maintaining a smooth UI experience.',
+    outcome: 'Successfully developed a functional and user-friendly task manager app that helps students organize their tasks efficiently and reliably.'
   },
 ];
