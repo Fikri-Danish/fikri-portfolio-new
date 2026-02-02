@@ -20,79 +20,11 @@ import phoneIcon from '../images/mobile-icon.png';
 import studentIcon from '../images/student-icon.png';
 import workIcon from '../images/work-icon.png';
 
-// ==============================================
-// PROJECT DATA WITH DETAILED INFO & MEDIA GALLERY
-// ==============================================
+// Import project data from separate file
+import { projectsData } from '../data/projectsData';
 
-export const projectsData = [
-  {
-    id: 1,
-    title: 'Student Task Manager App',
-    description: 'A React Native app where students can create tasks, track assignments, and stay organized.',
-    type: 'Mobile Development',
-    image: projectImage1,
-    // Media gallery for project detail page - add more images/videos here
-    media: [
-      { type: 'image', src: projectImage1, alt: 'Task Manager Home Screen' },
-      // Example: { type: 'image', src: projectImage1_2, alt: 'Task List View' },
-      // Example: { type: 'video', src: 'https://youtube.com/embed/VIDEO_ID', alt: 'Demo Video' },
-    ],
-    overview: 'A comprehensive task management application designed specifically for students to help them stay on top of their academic responsibilities.',
-    technologies: ['React Native', 'JavaScript', 'Expo', 'AsyncStorage', 'React Navigation'],
-    features: [
-      'Create and manage tasks with deadlines',
-      'Track assignment status (pending, in progress, completed)',
-      'Set priority levels for tasks',
-      'Receive notifications for upcoming deadlines',
-      'Dark mode support'
-    ],
-    challenges: 'Implementing persistent data storage and creating an intuitive user interface that works across different screen sizes.',
-    outcome: 'Successfully developed a fully functional app that helps students organize their academic life more efficiently.'
-  },
-  {
-    id: 2,
-    title: 'VR Escape Room',
-    description: 'An immersive VR experience built with Unity, where players must solve puzzles to escape a silent space station.',
-    type: 'Others',
-    image: projectImage2,
-    media: [
-      { type: 'image', src: projectImage2, alt: 'VR Escape Room Environment' },
-      { type: 'image', src: projectImage2, alt: 'VR Escape Room Environment' },
-    ],
-    overview: 'An immersive virtual reality escape room game set in a mysterious abandoned space station where players must solve interconnected puzzles to escape.',
-    technologies: ['Unity 3D', 'C#', 'VR SDK', 'Blender', '3D Modeling'],
-    features: [
-      'Fully immersive VR environment',
-      'Multiple interconnected puzzle rooms',
-      'Environmental storytelling',
-      'Interactive objects and mechanisms',
-      'Atmospheric sound design'
-    ],
-    challenges: 'Creating engaging VR mechanics that don\'t cause motion sickness while maintaining puzzle complexity and narrative flow.',
-    outcome: 'Created an engaging VR experience that received positive feedback for its atmosphere and creative puzzle design.'
-  },
-  {
-    id: 3,
-    title: 'Instagram Travel Grid',
-    description: 'Designed a stylish Instagram grid in Photoshop, showcasing iconic landmarks with a travel promo.',
-    type: 'Digital Design',
-    image: projectImage3,
-    media: [
-      { type: 'image', src: projectImage3, alt: 'Instagram Travel Grid Design' },
-    ],
-    overview: 'A cohesive Instagram feed design project featuring a curated collection of travel photographs arranged in an aesthetically pleasing grid layout.',
-    technologies: ['Photoshop', 'Lightroom', 'Color Theory', 'Visual Design', 'Social Media Marketing'],
-    features: [
-      'Consistent color grading across all images',
-      'Strategic grid layout planning',
-      'Typography integration for promotional content',
-      'Brand identity development',
-      'Engagement-optimized posting strategy'
-    ],
-    challenges: 'Maintaining visual consistency while showcasing diverse locations and creating a recognizable brand aesthetic.',
-    outcome: 'Developed a visually stunning Instagram grid that effectively communicates the travel brand\'s identity and increases engagement.'
-  },
-];
+// Export it so other components can import from Components.js
+export { projectsData };
 
 // ==============================================
 // SCROLL ANIMATION HOOK
@@ -157,47 +89,47 @@ export function ProjectModal({ project, onClose }) {
 
   return (
     <div className="project-modal-overlay" onClick={handleOverlayClick}>
-      <div className="project-modal project-modal-horizontal">
+      <div className="project-modal">
         <button className="modal-close" onClick={onClose} aria-label="Close modal">×</button>
         
-        {/* Left side - Image */}
-        <div className="modal-image-container">
-          <img src={project.image} alt={project.title} className="modal-image" />
-        </div>
-        
-        {/* Right side - Content */}
-        <div className="modal-content">
-          <h2>{project.title}</h2>
-          <span className="project-type-badge">{project.type}</span>
-
-          <div className="modal-section">
-            <h3>Overview</h3>
-            <p>{project.overview}</p>
+        <div className="modal-layout">
+          <div className="modal-image-container">
+            <img src={project.image} alt={project.title} className="modal-image" />
           </div>
+          
+          <div className="modal-content">
+            <h2>{project.title}</h2>
+            <span className="project-type-badge">{project.type}</span>
 
-          <div className="modal-section">
-            <h3>Technologies Used</h3>
-            <div className="tech-stack">
-              {project.technologies.map((tech, index) => (
-                <span key={index} className="tech-tag">{tech}</span>
+            <div className="modal-section">
+              <h3>Overview</h3>
+              <p>{project.overview}</p>
+            </div>
+
+            <div className="modal-section">
+              <h3>Technologies Used</h3>
+              <div className="tech-stack">
+                {project.technologies.map((tech, index) => (
+                  <span key={index} className="tech-tag">{tech}</span>
+                ))}
+              </div>
+            </div>
+
+            <div className="modal-section">
+              <h3>Key Features</h3>
+              {project.features.slice(0, 3).map((feature, index) => (
+                <p key={index}>• {feature}</p>
               ))}
             </div>
-          </div>
 
-          <div className="modal-section">
-            <h3>Key Features</h3>
-            {project.features.slice(0, 3).map((feature, index) => (
-              <p key={index}>• {feature}</p>
-            ))}
-          </div>
-
-          <div className="modal-actions">
-            <button className="view-details-btn" onClick={handleViewDetails}>
-              View Full Details
-            </button>
-            <button className="close-modal-btn" onClick={onClose}>
-              Close
-            </button>
+            <div className="modal-actions">
+              <button className="view-details-btn" onClick={handleViewDetails}>
+                View Full Details
+              </button>
+              <button className="close-modal-btn" onClick={onClose}>
+                Close
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -421,6 +353,7 @@ export function ProjectItem({ title, description, image, project }) {
           <img src={image} alt={title} />
         </div>
         <div className="project-info">
+          <div className="project-type-badge">{project.type}</div>
           <h3>{title}</h3>
           <p>{description}</p>
         </div>
@@ -443,7 +376,8 @@ export function ProjectItem({ title, description, image, project }) {
 export function Projects() {
   const [titleRef, titleVisible] = useScrollAnimation();
 
-  const featuredProjects = projectsData;
+  // Show only first 3 projects for homepage
+  const featuredProjects = projectsData.slice(0, 3);
 
   return (
     <div className="projects">
@@ -508,10 +442,11 @@ export function Education() {
           </div>
 
           <div className="timeline-content">
-            <div className="timeline-year">{edu.year}</div>
             <h4>{edu.degree}</h4>
             <p>{edu.institution}</p>
           </div>
+
+          <div className="timeline-year">{edu.year}</div>
         </div>
       ))}
     </div>
@@ -565,7 +500,6 @@ export function WorkExperience() {
           </div>
 
           <div className="timeline-content">
-            <div className="timeline-year">{job.year}</div>
             <h4>{job.title}</h4>
             <p><b>{job.company}</b></p>
             <ul>
@@ -574,6 +508,8 @@ export function WorkExperience() {
               ))}
             </ul>
           </div>
+
+          <div className="timeline-year">{job.year}</div>
         </div>
       ))}
     </div>

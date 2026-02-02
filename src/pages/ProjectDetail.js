@@ -1,12 +1,14 @@
 // src/pages/ProjectDetail.js
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { Navbar, Footer, projectsData } from '../components/Components';
+import { Navbar, Footer } from '../components/Components';
+import { projectsData } from '../data/projectsData';
 
 export function ProjectDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const [selectedMediaIndex, setSelectedMediaIndex] = useState(0);
+  const [selectedMedia, setSelectedMedia] = useState(0);
+  const thumbnailContainerRef = useRef(null);
   
   // Find the project by ID
   const project = projectsData.find(p => p.id === parseInt(id));
@@ -18,24 +20,120 @@ export function ProjectDetail() {
     }
   }, [project, navigate]);
 
+  // Get media array (could be images, videos, or both)
+  // Support both 'media' array and legacy 'images' array, fallback to single 'image'
+  const mediaItems = project?.media || project?.images || (project?.image ? [{ type: 'image', src: project.image }] : []);
+  
+  // Normalize media items to always have type and src
+  const normalizedMedia = mediaItems.map(item => {
+    if (typeof item === 'string') {
+      // Legacy format - just a string path
+      return { type: 'image', src: item };
+    }
+    return item;
+  });
+
+  // Check if we have multiple media items
+  const hasMultipleMedia = normalizedMedia.length > 1;
+
+  // Scroll to selected thumbnail when changed
+  useEffect(() => {
+    if (thumbnailContainerRef.current && hasMultipleMedia) {
+      const selectedThumb = thumbnailContainerRef.current.children[selectedMedia];
+      if (selectedThumb) {
+        selectedThumb.scrollIntoView({
+          behavior: 'smooth',
+          block: 'nearest',
+          inline: 'center'
+        });
+      }
+    }
+  }, [selectedMedia, hasMultipleMedia]);
+
   // Return null while redirecting
   if (!project) {
     return null;
   }
 
-  const media = project.media || [{ type: 'image', src: project.image, alt: project.title }];
-  const selectedMedia = media[selectedMediaIndex];
-
-  const handleThumbnailClick = (index) => {
-    setSelectedMediaIndex(index);
+  // Helper function to extract YouTube video ID from various URL formats
+  const getYouTubeVideoId = (url) => {
+    if (!url) return null;
+    
+    // If it's already just an ID (11 characters), return it
+    if (url.length === 11 && !url.includes('/') && !url.includes('?')) {
+      return url;
+    }
+    
+    // Handle various YouTube URL formats
+    const patterns = [
+      /(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([^&\n?#]+)/,
+      /^([a-zA-Z0-9_-]{11})$/
+    ];
+    
+    for (let pattern of patterns) {
+      const match = url.match(pattern);
+      if (match) {
+        return match[1];
+      }
+    }
+    
+    return null;
   };
 
-  const handlePrevious = () => {
-    setSelectedMediaIndex((prev) => (prev === 0 ? media.length - 1 : prev - 1));
+  // Helper function to render media (image or YouTube video)
+  const renderMedia = (mediaItem, className, isThumb = false) => {
+    if (mediaItem.type === 'youtube' || mediaItem.type === 'video') {
+      const videoId = getYouTubeVideoId(mediaItem.src || mediaItem.youtubeId);
+      
+      if (isThumb) {
+        // For thumbnails, show YouTube thumbnail image
+        return (
+          <>
+            <img 
+              src={`https://img.youtube.com/vi/${videoId}/mqdefault.jpg`}
+              alt="Video thumbnail"
+              className={className}
+            />
+            <div className="video-indicator">▶</div>
+          </>
+        );
+      } else {
+        // For main display, show embedded YouTube player
+        return (
+          <div className="youtube-video-container">
+            <iframe
+              src={`https://www.youtube.com/embed/${videoId}`}
+              title="YouTube video"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              className="youtube-iframe"
+            ></iframe>
+          </div>
+        );
+      }
+    } else {
+      // Regular image
+      return (
+        <img 
+          src={mediaItem.src} 
+          alt={isThumb ? `Thumbnail ${selectedMedia + 1}` : project.title} 
+          className={className}
+        />
+      );
+    }
   };
 
-  const handleNext = () => {
-    setSelectedMediaIndex((prev) => (prev === media.length - 1 ? 0 : prev + 1));
+  // Helper function to render text with paragraph breaks
+  const renderTextWithParagraphs = (text) => {
+    if (!text) return null;
+    
+    // Split by \n\n to create paragraphs
+    const paragraphs = text.split('\n\n').filter(p => p.trim());
+    
+    return paragraphs.map((paragraph, index) => (
+      <p key={index}>{paragraph}</p>
+    ));
   };
 
   return (
@@ -48,88 +146,44 @@ export function ProjectDetail() {
         </button>
 
         <div className="project-detail-hero">
-          {/* Main Media Display */}
-          <div className="media-gallery-container">
-            <div className="main-media-wrapper">
-              {selectedMedia.type === 'image' ? (
-                <img 
-                  src={selectedMedia.src} 
-                  alt={selectedMedia.alt || project.title}
-                  className="project-detail-image"
-                />
-              ) : (
-                <div className="video-wrapper">
-                  <iframe
-                    src={selectedMedia.src}
-                    title={selectedMedia.alt || 'Project Video'}
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                    className="project-detail-video"
-                  />
-                </div>
-              )}
-
-              {/* Navigation Arrows - Only show if more than 1 media item */}
-              {media.length > 1 && (
-                <>
-                  <button 
-                    className="media-nav-arrow media-nav-left" 
-                    onClick={handlePrevious}
-                    aria-label="Previous media"
-                  >
-                    ‹
-                  </button>
-                  <button 
-                    className="media-nav-arrow media-nav-right" 
-                    onClick={handleNext}
-                    aria-label="Next media"
-                  >
-                    ›
-                  </button>
-                </>
-              )}
+          {/* Media Gallery Section */}
+          <div className="image-gallery-section">
+            {/* Main Media Display */}
+            <div className="main-image-container">
+              {renderMedia(normalizedMedia[selectedMedia], 'main-image')}
             </div>
 
-            {/* Thumbnail Gallery - Only show if more than 1 media item */}
-            {media.length > 1 && (
-              <div className="thumbnail-gallery">
-                {media.map((item, index) => (
-                  <div
-                    key={index}
-                    className={`thumbnail-item ${index === selectedMediaIndex ? 'active' : ''}`}
-                    onClick={() => handleThumbnailClick(index)}
-                  >
-                    {item.type === 'image' ? (
-                      <img 
-                        src={item.src} 
-                        alt={item.alt || `Thumbnail ${index + 1}`}
-                      />
-                    ) : (
-                      <div className="video-thumbnail">
-                        <span className="play-icon">▶</span>
-                        <span className="video-label">Video</span>
-                      </div>
-                    )}
-                  </div>
-                ))}
+            {/* Thumbnail Gallery - Only show if multiple media items */}
+            {hasMultipleMedia && (
+              <div className="thumbnail-scroll-wrapper">
+                <div className="thumbnail-container" ref={thumbnailContainerRef}>
+                  {normalizedMedia.map((mediaItem, index) => (
+                    <div 
+                      key={index}
+                      className={`thumbnail ${selectedMedia === index ? 'active' : ''}`}
+                      onClick={() => setSelectedMedia(index)}
+                    >
+                      {renderMedia(mediaItem, mediaItem.type === 'youtube' || mediaItem.type === 'video' ? 'thumbnail-video' : 'thumbnail-image', true)}
+                    </div>
+                  ))}
+                </div>
               </div>
             )}
           </div>
-
+          
           <div className="project-detail-header">
             <h1>{project.title}</h1>
             
             <div className="project-detail-meta">
-              <span className="project-type-tag">{project.type}</span>
+              <span className="project-type-badge">{project.type}</span>
             </div>
           </div>
         </div>
 
         <div className="detail-section">
           <h2>Project Overview</h2>
-          <p>{project.overview}</p>
-          <p>{project.description}</p>
+          {renderTextWithParagraphs(project.overview)}
+          {project.description && <p>{project.description}</p>}
         </div>
 
         <div className="detail-section">
@@ -154,12 +208,12 @@ export function ProjectDetail() {
 
         <div className="detail-section">
           <h2>Challenges & Solutions</h2>
-          <p>{project.challenges}</p>
+          {renderTextWithParagraphs(project.challenges)}
         </div>
 
         <div className="detail-section">
           <h2>Project Outcome</h2>
-          <p>{project.outcome}</p>
+          {renderTextWithParagraphs(project.outcome)}
         </div>
       </div>
 
