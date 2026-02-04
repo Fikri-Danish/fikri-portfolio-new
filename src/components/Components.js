@@ -89,12 +89,12 @@ export function ProjectModal({ project, onClose }) {
     <div className="project-modal-overlay" onClick={handleOverlayClick}>
       <div className="project-modal">
         <button className="modal-close" onClick={onClose} aria-label="Close modal">×</button>
-        
+
         <div className="modal-layout">
           <div className="modal-image-container">
             <img src={project.image} alt={project.title} className="modal-image" />
           </div>
-          
+
           <div className="modal-content">
             <h2>{project.title}</h2>
             <span className="project-type-badge">{project.type}</span>
@@ -158,7 +158,7 @@ export function Navbar() {
       </div>
 
       {/* Hamburger Menu Button - Only visible on mobile */}
-      <button 
+      <button
         className={`hamburger ${isMenuOpen ? 'active' : ''}`}
         onClick={toggleMenu}
         aria-label="Toggle menu"
@@ -247,7 +247,7 @@ export function Skills() {
   return (
     <div className="skills">
       {skills.map((skill, index) => (
-        <div 
+        <div
           className={`skill-card fade-in ${skill.isVisible ? 'visible' : ''}`}
           key={index}
           ref={skill.ref}
@@ -330,7 +330,7 @@ export function About() {
 }
 
 // ==============================================
-// PROJECT CARD COMPONENT
+// PROJECT CARD COMPONENT (For Homepage - Blue Cards)
 // ==============================================
 
 export function ProjectCard({ title, description, image, project }) {
@@ -343,8 +343,8 @@ export function ProjectCard({ title, description, image, project }) {
 
   return (
     <>
-      <div 
-        className={`project-item scale-in ${isVisible ? 'visible' : ''}`}
+      <div
+        className={`project-card scale-in ${isVisible ? 'visible' : ''}`}
         ref={ref}
         onClick={handleClick}
       >
@@ -352,16 +352,15 @@ export function ProjectCard({ title, description, image, project }) {
           <img src={image} alt={title} />
         </div>
         <div className="project-info">
-          <div className="project-type-badge">{project.type}</div>
           <h3>{title}</h3>
           <p>{description}</p>
         </div>
       </div>
 
       {showModal && (
-        <ProjectModal 
-          project={project} 
-          onClose={() => setShowModal(false)} 
+        <ProjectModal
+          project={project}
+          onClose={() => setShowModal(false)}
         />
       )}
     </>
@@ -382,7 +381,7 @@ export function ProjectItem({ title, description, image, project }) {
 
   return (
     <>
-      <div 
+      <div
         className={`project-item scale-in ${isVisible ? 'visible' : ''}`}
         ref={ref}
         onClick={handleClick}
@@ -398,9 +397,9 @@ export function ProjectItem({ title, description, image, project }) {
       </div>
 
       {showModal && (
-        <ProjectModal 
-          project={project} 
-          onClose={() => setShowModal(false)} 
+        <ProjectModal
+          project={project}
+          onClose={() => setShowModal(false)}
         />
       )}
     </>
@@ -429,7 +428,7 @@ export function Projects() {
 
       <div className="project-container">
         {featuredProjects.map((project) => (
-          <ProjectCard 
+          <ProjectCard
             key={project.id}
             title={project.title}
             description={project.description}
@@ -560,11 +559,53 @@ export function WorkExperience() {
 
 export function Certifications() {
   const certifications = [
-      {
-      title: "EDUSAVE MERIT BURSARY 2025",
-      institution: 'Ministry of Education',
+    {
+      title: "Software Testing Assistance with GitHub Copilot AI",
+      institution: 'Linkedin Learning',
+      year: '2026',
+      description: 'LinkedIn Learning Certificate of Completion',
+    },
+    {
+      title: "Python Automation and Testing",
+      institution: 'Linkedin Learning',
+      year: '2026',
+      description: 'LinkedIn Learning Certificate of Completion',
+    },
+    {
+      title: "Google Analytics 4 (GA4) Essential Training",
+      institution: 'Linkedin Learning',
+      year: '2026',
+      description: 'LinkedIn Learning Certificate of Completion',
+    },
+    {
+      title: "Programming Foundations: Software Testing/QA",
+      institution: 'Linkedin Learning',
+      year: '2026',
+      description: 'LinkedIn Learning Certificate of Completion',
+    },
+    {
+      title: "Unit Testing and Test Driven Development in Python",
+      institution: 'Linkedin Learning',
       year: '2025',
-      description: 'For achieving good academic performance and demonstrating good conduct',
+      description: 'LinkedIn Learning Certificate of Completion',
+    },
+    {
+      title: "Learning Jira (Cloud Edition) (2020)",
+      institution: 'Linkedin Learning',
+      year: '2025',
+      description: 'LinkedIn Learning Certificate of Completion',
+    },
+    {
+      title: "Software Testing Foundations: Bug Writing and Managment",
+      institution: 'Linkedin Learning',
+      year: '2025',
+      description: 'LinkedIn Learning Certificate of Completion',
+    },
+    {
+      title: "ISTQB Foundation Cert Prep",
+      institution: 'Linkedin Learning',
+      year: '2025',
+      description: 'LinkedIn Learning Certificate of Completion',
     },
     {
       title: "DIRECTOR'S LIST",

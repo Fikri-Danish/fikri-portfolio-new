@@ -706,11 +706,24 @@ body {
 }
 
 .project-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  justify-content: center;
+  margin-top: 20px;
+  padding: 0 20px;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* For project list page - different layout */
+.project-list .project-container {
   display: flex;
   gap: 20px;
   justify-content: center;
   flex-wrap: wrap;
-  margin-top: 20px;
+  grid-template-columns: none;
 }
 
 .projects .button-container {
@@ -771,9 +784,7 @@ body {
   display: flex;
   flex-direction: column;
   color: var(--white);
-  width: 450px;
-  max-width: 100%;
-  margin-bottom: 20px;
+  width: 100%;
   position: relative;
   overflow: hidden;
 }
@@ -843,6 +854,26 @@ body {
   transform: translateY(-10px);
   box-shadow: 0 12px 28px rgba(239, 115, 0, 0.3);
   border: 2px solid var(--accent-color);
+}
+
+/* Responsive grid for homepage projects */
+@media (max-width: 1200px) {
+  .project-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .project-container {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 0 10px;
+  }
+  
+  .project-card .project-image img {
+    height: 200px;
+  }
 }
 
 /* PROJECT ITEM - For ProjectList Page (New White Design) */

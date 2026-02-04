@@ -25,13 +25,22 @@ import projectImage6c from '../imagesProjects/6c.png';
 import projectImage6d from '../imagesProjects/6d.png';
 import projectImage6e from '../imagesProjects/6e.png';
 
+import projectImage7a from '../imagesProjects/7a.png';
+
+import projectImage8a from '../imagesProjects/8a.gif';
+import projectImage8b from '../imagesProjects/8b.gif';
+import projectImage8c from '../imagesProjects/8c.png';
+import projectImage8d from '../imagesProjects/8d.gif';
+import projectImage8e from '../imagesProjects/8e.png';
+import projectImage8f from '../imagesProjects/8f.gif';
+
 export const projectsData = [
-    {
+  {
     id: 1,
     title: 'Personal Portfolio Website',
     description: 'A modern, responsive portfolio website built with React to showcase my projects, skills, and professional experience.',
     type: 'Web App Development',
-    image: projectImage1a, // You'll need to add this image
+    image: projectImage1a,
     overview: 'A comprehensive portfolio website designed to present my work as a Digital Design & Development student. The site serves as a central hub for potential employers, clients, and collaborators to explore my projects, understand my skill set, and get in touch.\n\nBuilt with modern web technologies, the portfolio emphasizes clean design, smooth navigation, and responsive layouts that work seamlessly across all devices.',
     technologies: ['React', 'React Router', 'JavaScript', 'CSS3', 'HTML5', 'EmailJS'],
     features: [
@@ -47,7 +56,7 @@ export const projectsData = [
     links: [
       {
         title: 'GitHub Repository',
-        url: 'https://github.com/Fikri-Danish'
+        url: 'https://github.com/Fikri-Danish/fikri-portfolio-new'
       }
     ]
   },
@@ -141,7 +150,17 @@ export const projectsData = [
       'Persistent data across sessions and devices'
     ],
     challenges: 'Ensuring smooth API integration and data persistence across sessions while maintaining a user-friendly UI. Handling multiple pillars per activity and implementing milestone tracking required careful data structure design and validation.',
-    outcome: 'Successfully developed a functional mobile app that promotes sustainable practices, with reliable API integration and milestone rewards that encourage continued engagement.'
+    outcome: 'Successfully developed a functional mobile app that promotes sustainable practices, with reliable API integration and milestone rewards that encourage continued engagement.',
+    links: [
+      {
+        title: 'Frontend Codebase (GitHub)',
+        url: 'https://github.com/Fikri-Danish/GreenActivities'
+      },
+      {
+        title: 'Backend Codebase (GitHub)',
+        url: 'https://github.com/Fikri-Danish/onlineGreenActivitiesWebService'
+      }
+    ]
   },
   {
     id: 4,
@@ -182,21 +201,20 @@ export const projectsData = [
   {
     id: 5,
     title: 'Instagram Travel Grid',
-    description: 'Designed a stylish Instagram grid in Photoshop, showcasing iconic landmarks with a travel promo.',
+    description: 'A curated Instagram grid design showcasing iconic travel destinations with promotional content.',
     type: 'Digital Design',
     image: projectImage5a,
-    // Single image - no gallery will be shown
-    overview: 'A cohesive Instagram feed design project featuring a curated collection of travel photographs arranged in an aesthetically pleasing grid layout.',
+    overview: 'This project focuses on designing a visually cohesive Instagram feed using a grid layout to present travel destinations, branding elements, and promotional messaging in a consistent style.',
     technologies: ['Photoshop'],
     features: [
-      'Consistent color grading across all images',
-      'Strategic grid layout planning',
-      'Typography integration for promotional content',
-      'Brand identity development',
-      'Engagement-optimized posting strategy'
+      'Cohesive grid-based layout',
+      'Consistent colour grading and visual tone',
+      'Integrated typography for promotions and branding',
+      'Clear brand identity and visual hierarchy',
+      'Optimised layout for social media engagement'
     ],
-    challenges: 'Maintaining visual consistency while showcasing diverse locations and creating a recognizable brand aesthetic.',
-    outcome: 'Developed a visually stunning Instagram grid that effectively communicates the travel brand\'s identity and increases engagement.'
+    challenges: 'Ensuring visual consistency across diverse locations while maintaining a strong and recognisable brand identity.',
+    outcome: 'Successfully created a polished Instagram grid that enhances brand presence and attracts audience engagement.'
   },
   {
     id: 6,
@@ -240,6 +258,97 @@ export const projectsData = [
       'Clean and modern user interface'
     ],
     challenges: 'Implementing a clear section-based workflow and ensuring tasks persist across app sessions using AsyncStorage while maintaining a smooth UI experience.',
-    outcome: 'Successfully developed a functional and user-friendly task manager app that helps students organize their tasks efficiently and reliably.'
+    outcome: 'Successfully developed a functional and user-friendly task manager app that helps students organize their tasks efficiently and reliably.',
+    links: [
+      {
+        title: 'GitHub Repository',
+        url: 'https://github.com/Fikri-Danish/StudentTaskManagerApp'
+      }
+    ]
   },
+  {
+    id: 7,
+    title: 'Plant-Based Food Trail Awareness Poster',
+    description: 'A digital poster designed to promote a Plant-Based Food Trail event, highlighting vegetarian and vegan food options while raising awareness of the plant-based movement in Singapore.',
+    type: 'Digital Design',
+    image: projectImage7a,
+    overview: 'This awareness poster was created for a Plant-Based Food Trail event in collaboration with small businesses in Bedok. The design aims to educate participants about the plant-based movement, its benefits and challenges, and encourage engagement through visual storytelling and a QR code for more information. The overall theme aligns with the organisation’s brand colours of green and yellow, reinforced with food imagery and greenery elements.',
+    technologies: ['Canva'],
+    features: [
+      'Use of green and yellow colour palette to align with the organisation’s branding',
+      'Strong visual emphasis on the headline and plant-based food imagery',
+      'Clear informational layout with bullet points for easy readability',
+      'QR code integration to direct viewers to additional event details',
+      'Educational “What you will learn” section to set clear expectations for participants'
+    ],
+    challenges: 'Balancing multiple visual elements such as text, imagery, and a QR code without overwhelming the viewer was a key challenge. This was addressed by applying asymmetrical balance, placing the main food image slightly off-centre and counterbalancing it with text content. Another challenge was guiding viewers through the information effectively; this was solved by using visual movement cues such as arrows in the “What you will learn” section and strong contrast to establish a clear visual hierarchy.',
+    outcome: 'Successfully produced an engaging and informative event awareness poster that communicates key details clearly, attracts attention through strong visual hierarchy, and encourages audience participation in the Plant-Based Food Trail.'
+  },
+  {
+    id: 8,
+    title: 'Study Space Booking System',
+    description: 'A full-stack web application for library and study area booking with real-time availability tracking and role-based access control. (Group Project)',
+    type: 'Web App Development',
+    image: projectImage8a,
+    media: [
+      {
+        type: 'image',
+        src: projectImage8a
+      },
+      {
+        type: 'image',
+        src: projectImage8b
+      },
+      {
+        type: 'image',
+        src: projectImage8c
+      },
+      {
+        type: 'image',
+        src: projectImage8d
+      },
+      {
+        type: 'image',
+        src: projectImage8e
+      },
+      {
+        type: 'image',
+        src: projectImage8f
+      },
+    ],
+    overview: 'StudySpace is a comprehensive booking system designed to help students find and reserve study spaces across campus libraries. This group project features real-time availability tracking, zone-type filtering (Quiet/Discussion), and capacity-based search. It implements role-based authentication where admins can manage spaces while students can browse and book available spots. The system eliminates the hassle of searching for empty seats by providing live availability status and advance booking capabilities.',
+    technologies: ['React', 'Node.js', 'Express', 'MySQL', 'JWT Authentication', 'React Router', 'CORS'],
+    features: [
+      'Real-time study space availability tracking',
+      'Role-based access control (Admin and Student roles)',
+      'Space filtering by location, capacity, and zone type',
+      'Book, edit, and manage study spaces',
+      'JWT-based authentication and protected routes',
+      'Responsive design with modern UI/UX',
+      'Admin dashboard for space management (add, edit, delete)',
+      'Student booking system with booking history',
+      'MySQL database integration for persistent data storage'
+    ],
+    challenges: 'Implementing secure role-based authentication while ensuring proper state management across multiple components. Managing real-time availability updates and preventing booking conflicts required careful handling of MySQL datetime conversions between frontend and backend. Additionally, establishing proper CORS policies and protecting routes based on user roles presented complexity in maintaining security without compromising user experience.',
+    solution: 'Implemented JWT-based authentication with middleware functions (requireAuth, requireAdmin) on the backend to enforce role-based access. Created a custom datetime conversion utility (toMySQLDateTime) to handle timezone discrepancies between JavaScript Date objects and MySQL DATETIME format. Used React Router\'s ProtectedRoute component to conditionally render pages based on user roles stored in localStorage. Configured CORS with whitelisted origins and proper headers to enable secure cross-origin requests while maintaining API security.',
+    outcome: 'Successfully deployed a production-ready study space booking system that streamlines the process of finding and reserving study areas on campus. The application effectively handles concurrent users, maintains data integrity through proper database transactions, and provides a seamless booking experience with clear role separation between admins and students.',
+    links: [
+      {
+        title: 'GitHub Repository - Frontend',
+        url: 'https://github.com/24044781-FynnNgJunMing/c219_ca2'
+      },
+      {
+        title: 'GitHub Repository - Backend',
+        url: 'https://github.com/Fikri-Danish/onlineStudySpacesWebService'
+      },
+      {
+        title: 'Frontend Live Website (Vercel)',
+        url: 'https://c219-ca2.vercel.app'
+      },
+      {
+        title: 'Live API (Render)',
+        url: 'https://onlinestudyspaceswebservice.onrender.com/allspaces'
+      },
+    ]
+  }
 ];
