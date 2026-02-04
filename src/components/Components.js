@@ -136,10 +136,20 @@ export function ProjectModal({ project, onClose }) {
 }
 
 // ==============================================
-// NAVBAR COMPONENT
+// NAVBAR COMPONENT WITH HAMBURGER MENU
 // ==============================================
 
 export function Navbar() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
+  const closeMenu = () => {
+    setIsMenuOpen(false);
+  };
+
   return (
     <nav className="navbar">
       <div className="logo-container">
@@ -147,13 +157,31 @@ export function Navbar() {
         <span className="brand-name">Fikri</span>
       </div>
 
-      <ul className="nav-links">
-        <li><Link to="/">Home</Link></li>
-        <li><Link to="/projectList">Projects</Link></li>
-        <li><Link to="/aboutPage">About Me</Link></li>
+      {/* Hamburger Menu Button - Only visible on mobile */}
+      <button 
+        className={`hamburger ${isMenuOpen ? 'active' : ''}`}
+        onClick={toggleMenu}
+        aria-label="Toggle menu"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      {/* Navigation Links */}
+      <ul className={`nav-links ${isMenuOpen ? 'active' : ''}`}>
+        <li><Link to="/" onClick={closeMenu}>Home</Link></li>
+        <li><Link to="/projectList" onClick={closeMenu}>Projects</Link></li>
+        <li><Link to="/aboutPage" onClick={closeMenu}>About Me</Link></li>
+        <li className="nav-contact-btn">
+          <Link to="/contact" onClick={closeMenu}>
+            <button className="contact-btn">Contact Me</button>
+          </Link>
+        </li>
       </ul>
 
-      <Link to="/contact">
+      {/* Contact Button - visible on desktop only */}
+      <Link to="/contact" className="contact-link-desktop" onClick={closeMenu}>
         <button className="contact-btn">Contact Me</button>
       </Link>
     </nav>
@@ -275,28 +303,34 @@ export function About() {
       <div className={`featured-title fade-in ${titleVisible ? 'visible' : ''}`} ref={titleRef}>
         <h2>ABOUT ME</h2>
       </div>
+
       <div className={`projects-title fade-in ${titleVisible ? 'visible' : ''}`}>
-        <h3>A passionate creator</h3>
+        <h3>What I bring to the table</h3>
       </div>
-      <p className={`fade-in ${textVisible ? 'visible' : ''}`} ref={textRef}>
-        I'm Fikri, a Digital Design & Development student passionate about blending 
-        creativity with technology. I focus on creating intuitive, user-friendly designs 
-        and continuously refining my skills to deliver better digital experiences.
-      </p>
-      
-      <Skills />
-      
+
+      <div className={`about-description fade-in ${textVisible ? 'visible' : ''}`} ref={textRef}>
+        <p>
+          I'm Fikri, a Digital Design & Development student who loves working with
+          creativity and technology. I enjoy learning how to make designs that are fun
+          and easy to use. On this site, you'll find my design ideas and projects.
+          I try to keep things simple and interactive, always improving my skills to
+          create better user experiences.
+        </p>
+      </div>
+
       <div className={`about-button-container fade-in ${buttonVisible ? 'visible' : ''}`} ref={buttonRef}>
         <Link to="/aboutPage">
           <button className="learn-more-btn">Learn More About Me</button>
         </Link>
       </div>
+
+      <Skills />
     </section>
   );
 }
 
 // ==============================================
-// PROJECT CARD COMPONENT (Must be before Projects)
+// PROJECT CARD COMPONENT
 // ==============================================
 
 export function ProjectCard({ title, description, image, project }) {
@@ -310,7 +344,7 @@ export function ProjectCard({ title, description, image, project }) {
   return (
     <>
       <div 
-        className={`project-card scale-in ${isVisible ? 'visible' : ''}`}
+        className={`project-item scale-in ${isVisible ? 'visible' : ''}`}
         ref={ref}
         onClick={handleClick}
       >
@@ -318,11 +352,12 @@ export function ProjectCard({ title, description, image, project }) {
           <img src={image} alt={title} />
         </div>
         <div className="project-info">
+          <div className="project-type-badge">{project.type}</div>
           <h3>{title}</h3>
           <p>{description}</p>
         </div>
       </div>
-      
+
       {showModal && (
         <ProjectModal 
           project={project} 
@@ -334,7 +369,7 @@ export function ProjectCard({ title, description, image, project }) {
 }
 
 // ==============================================
-// PROJECT ITEM COMPONENT
+// PROJECT ITEM (for project list page)
 // ==============================================
 
 export function ProjectItem({ title, description, image, project }) {

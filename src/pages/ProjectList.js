@@ -31,16 +31,16 @@ export function ProjectList() {
             All
           </button>
           <button 
-            className={filter === 'Web Development' ? 'active' : 'inactive'} 
-            onClick={() => setFilter('Web Development')}
+            className={filter === 'Web App Development' ? 'active' : 'inactive'} 
+            onClick={() => setFilter('Web App Development')}
           >
-            Web Development
+            Web App Development
           </button>
           <button 
-            className={filter === 'Mobile Development' ? 'active' : 'inactive'} 
-            onClick={() => setFilter('Mobile Development')}
+            className={filter === 'Mobile App Development' ? 'active' : 'inactive'} 
+            onClick={() => setFilter('Mobile App Development')}
           >
-            Mobile Development
+            Mobile App Development
           </button>
           <button 
             className={filter === 'Digital Design' ? 'active' : 'inactive'} 

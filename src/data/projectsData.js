@@ -30,7 +30,7 @@ export const projectsData = [
     id: 1,
     title: 'Personal Portfolio Website',
     description: 'A modern, responsive portfolio website built with React to showcase my projects, skills, and professional experience.',
-    type: 'Web Development',
+    type: 'Web App Development',
     image: projectImage1a, // You'll need to add this image
     overview: 'A comprehensive portfolio website designed to present my work as a Digital Design & Development student. The site serves as a central hub for potential employers, clients, and collaborators to explore my projects, understand my skill set, and get in touch.\n\nBuilt with modern web technologies, the portfolio emphasizes clean design, smooth navigation, and responsive layouts that work seamlessly across all devices.',
     technologies: ['React', 'React Router', 'JavaScript', 'CSS3', 'HTML5', 'EmailJS'],
@@ -104,7 +104,7 @@ export const projectsData = [
     id: 3,
     title: 'Green Activities Mobile App',
     description: 'Team project: A mobile app that tracks eco-friendly activities aligned with Singapore’s Green Plan 2030.',
-    type: 'Mobile Development',
+    type: 'Mobile App Development',
     image: projectImage3a,
     media: [
       {
@@ -202,7 +202,7 @@ export const projectsData = [
     id: 6,
     title: 'Student Task Manager App',
     description: 'A React Native task management app for students with section-based tracking and persistent storage using AsyncStorage.',
-    type: 'Mobile Development',
+    type: 'Mobile App Development',
     image: projectImage6a,
     media: [
       {
