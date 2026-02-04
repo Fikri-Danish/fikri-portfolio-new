@@ -1,5 +1,5 @@
 // src/pages/AboutPage.js
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Navbar, Footer, SkillsAbout, Education, WorkExperience, Certifications } from '../components/Components';
 
@@ -9,7 +9,47 @@ import mobileIcon from '../images/mobile-icon.png';
 import linkedinIcon from '../images/linkedin.png';
 import githubIcon from '../images/github-icon.png';
 
+// Add scroll animation hook
+function useScrollAnimation() {
+  const elementRef = useRef(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      }
+    );
+
+    const currentElement = elementRef.current;
+    if (currentElement) {
+      observer.observe(currentElement);
+    }
+
+    return () => {
+      if (currentElement) {
+        observer.unobserve(currentElement);
+      }
+    };
+  }, []);
+
+  return [elementRef, isVisible];
+}
+
 export function AboutPage() {
+  const [leftColumnRef, leftColumnVisible] = useScrollAnimation();
+  const [aboutTextRef, aboutTextVisible] = useScrollAnimation();
+  const [skillsRef, skillsVisible] = useScrollAnimation();
+  const [educationRef, educationVisible] = useScrollAnimation();
+  const [workRef, workVisible] = useScrollAnimation();
+  const [certsRef, certsVisible] = useScrollAnimation();
+
   return (
     <div className="about-page-wrapper">
       <Navbar />
@@ -18,7 +58,7 @@ export function AboutPage() {
         <div className="about-layout">
 
           {/* LEFT COLUMN */}
-          <div className="personal-info">
+          <div className={`personal-info fade-in ${leftColumnVisible ? 'visible' : ''}`} ref={leftColumnRef}>
             <div className="image-container">
               <img src={faceImage} alt="Fikri" className="face-image" />
             </div>
@@ -26,12 +66,20 @@ export function AboutPage() {
             <div className="contact-info">
               <div className="contact-item">
                 <img src={emailIcon} alt="Email" className="contact-icon" />
-                <p>mohammed.danish.fikri@gmail.com</p>
+                <p>
+                  <a href="mailto:mohammed.danish.fikri@gmail.com">
+                    mohammed.danish.fikri@gmail.com
+                  </a>
+                </p>
               </div>
 
               <div className="contact-item">
                 <img src={mobileIcon} alt="Mobile" className="contact-icon" />
-                <p>+65 82093990</p>
+                <p>
+                  <a href="tel:+6582093990">
+                    +65 82093990
+                  </a>
+                </p>
               </div>
 
               <div className="contact-item linkedin-container">
@@ -70,7 +118,7 @@ export function AboutPage() {
           <div className="right-column">
 
             {/* About Section */}
-            <div className="about-text">
+            <div className={`about-text fade-in ${aboutTextVisible ? 'visible' : ''}`} ref={aboutTextRef}>
               <h2>About Me</h2>
               <p>
                 I'm Fikri, a Digital Design & Development student who loves working with
@@ -93,25 +141,25 @@ export function AboutPage() {
             </div>
 
             {/* Skills Section */}
-            <div className="skills-section">
+            <div className={`skills-section fade-in ${skillsVisible ? 'visible' : ''}`} ref={skillsRef}>
               <h3>My Skills</h3>
               <SkillsAbout />
             </div>
 
             {/* Education Section */}
-            <div className="education-section">
+            <div className={`education-section fade-in ${educationVisible ? 'visible' : ''}`} ref={educationRef}>
               <h3>Education</h3>
               <Education />
             </div>
 
             {/* Work Experience Section */}
-            <div className="work-experience-section">
+            <div className={`work-experience-section fade-in ${workVisible ? 'visible' : ''}`} ref={workRef}>
               <h3>Work Experience</h3>
               <WorkExperience />
             </div>
 
             {/* Certifications Section */}
-            <div className="certifications-section">
+            <div className={`certifications-section fade-in ${certsVisible ? 'visible' : ''}`} ref={certsRef}>
               <h3>Certifications</h3>
               <Certifications />
             </div>

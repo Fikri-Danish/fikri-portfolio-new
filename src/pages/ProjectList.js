@@ -49,10 +49,10 @@ export function ProjectList() {
             Digital Design
           </button>
           <button 
-            className={filter === 'Others' ? 'active' : 'inactive'} 
-            onClick={() => setFilter('Others')}
+            className={filter === 'Immersive Technology' ? 'active' : 'inactive'} 
+            onClick={() => setFilter('Immersive Technology')}
           >
-            Others
+            Immersive Technology
           </button>
         </div>
 

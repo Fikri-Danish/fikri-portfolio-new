@@ -268,6 +268,7 @@ export function SkillsAbout() {
 export function About() {
   const [titleRef, titleVisible] = useScrollAnimation();
   const [textRef, textVisible] = useScrollAnimation();
+  const [buttonRef, buttonVisible] = useScrollAnimation();
 
   return (
     <section id="about">
@@ -275,16 +276,21 @@ export function About() {
         <h2>ABOUT ME</h2>
       </div>
       <div className={`projects-title fade-in ${titleVisible ? 'visible' : ''}`}>
-        <h3>A Student with a Mission</h3>
+        <h3>A passionate creator</h3>
       </div>
       <p className={`fade-in ${textVisible ? 'visible' : ''}`} ref={textRef}>
-        I'm Fikri! A second-year Digital Design and Development student skilled
-        in Photoshop, Illustrator, and web design. Experienced in Python,
-        JavaScript, HTML, CSS, and SQL, seeking to apply technical and creative
-        skills in a dynamic environment.
+        I'm Fikri, a Digital Design & Development student passionate about blending 
+        creativity with technology. I focus on creating intuitive, user-friendly designs 
+        and continuously refining my skills to deliver better digital experiences.
       </p>
       
       <Skills />
+      
+      <div className={`about-button-container fade-in ${buttonVisible ? 'visible' : ''}`} ref={buttonRef}>
+        <Link to="/aboutPage">
+          <button className="learn-more-btn">Learn More About Me</button>
+        </Link>
+      </div>
     </section>
   );
 }

@@ -1,11 +1,44 @@
 // src/pages/ContactPage.js
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Navbar, Footer } from '../components/Components';
 import emailjs from '@emailjs/browser';
 import emailIcon from '../images/email-icon.png';
 import phoneIcon from '../images/mobile-icon.png';
 import linkedinIcon from '../images/linkedin.png';
 import githubIcon from '../images/github-icon.png';
+
+// Add scroll animation hook
+function useScrollAnimation() {
+  const elementRef = useRef(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      }
+    );
+
+    const currentElement = elementRef.current;
+    if (currentElement) {
+      observer.observe(currentElement);
+    }
+
+    return () => {
+      if (currentElement) {
+        observer.unobserve(currentElement);
+      }
+    };
+  }, []);
+
+  return [elementRef, isVisible];
+}
 
 export function ContactPage() {
   const form = useRef();
@@ -17,6 +50,9 @@ export function ContactPage() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
+  
+  const [leftSideRef, leftSideVisible] = useScrollAnimation();
+  const [rightSideRef, rightSideVisible] = useScrollAnimation();
 
   const handleChange = (e) => {
     setFormData({
@@ -62,7 +98,7 @@ export function ContactPage() {
         <div className="contact-page-container">
           
           {/* Left Side - Contact Info */}
-          <div className="contact-info-side">
+          <div className={`contact-info-side fade-in ${leftSideVisible ? 'visible' : ''}`} ref={leftSideRef}>
             <h1>Get In Touch</h1>
             <p className="contact-subtitle">
               Whether you have a question or just want to say hi, I'll get back to you!
@@ -73,14 +109,22 @@ export function ContactPage() {
                 <div className="contact-detail-icon">
                   <img src={emailIcon} alt="Email" />
                 </div>
-                <p>mohammed.danish.fikri@gmail.com</p>
+                <p>
+                  <a href="mailto:mohammed.danish.fikri@gmail.com">
+                    mohammed.danish.fikri@gmail.com
+                  </a>
+                </p>
               </div>
 
               <div className="contact-detail-item">
                 <div className="contact-detail-icon">
                   <img src={phoneIcon} alt="Phone" />
                 </div>
-                <p>+65 82093990</p>
+                <p>
+                  <a href="tel:+6582093990">
+                    +65 82093990
+                  </a>
+                </p>
               </div>
             </div>
 
@@ -115,7 +159,7 @@ export function ContactPage() {
           </div>
 
           {/* Right Side - Contact Form */}
-          <div className="contact-form-side">
+          <div className={`contact-form-side fade-in ${rightSideVisible ? 'visible' : ''}`} ref={rightSideRef}>
             <form ref={form} onSubmit={handleSubmit} className="contact-form">
               
               <div className="form-row">

@@ -215,6 +215,26 @@ export function ProjectDetail() {
           <h2>Project Outcome</h2>
           {renderTextWithParagraphs(project.outcome)}
         </div>
+
+        {project.links && project.links.length > 0 && (
+          <div className="detail-section">
+            <h2>Project Links</h2>
+            <div className="project-links">
+              {project.links.map((link, index) => (
+                <a 
+                  key={index} 
+                  href={link.url} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="project-link-button"
+                >
+                  {link.title}
+                  <span className="link-icon">→</span>
+                </a>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
 
       <Footer />

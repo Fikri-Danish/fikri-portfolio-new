@@ -43,13 +43,19 @@ export const projectsData = [
       'Clean, professional UI with consistent branding'
     ],
     challenges: 'One of the main challenges was creating a flexible project detail system that could handle different types of media, including images and YouTube videos, while maintaining a consistent layout. Additionally, ensuring the site was fully responsive required careful attention to CSS grid and flexbox layouts.\n\nAnother challenge was implementing smooth user experience features like project filtering and contact form validation while keeping the code clean and maintainable.',
-    outcome: 'Successfully created a professional portfolio website that effectively showcases my projects and skills. The site demonstrates my proficiency in React development, responsive design, and user experience principles. It serves as both a portfolio piece itself and a platform to display my other work.'
+    outcome: 'Successfully created a professional portfolio website that effectively showcases my projects and skills. The site demonstrates my proficiency in React development, responsive design, and user experience principles. It serves as both a portfolio piece itself and a platform to display my other work.',
+    links: [
+      {
+        title: 'GitHub Repository',
+        url: 'https://github.com/Fikri-Danish'
+      }
+    ]
   },
   {
     id: 2,
     title: 'VR Escape Room',
     description: 'An immersive VR experience built with Unity, where players must solve puzzles to escape a silent space station.',
-    type: 'Others',
+    type: 'Immersive Technology',
     image: projectImage2a,
     // Example with multiple media including YouTube video
     media: [
@@ -141,7 +147,7 @@ export const projectsData = [
     id: 4,
     title: 'AR Professional Name Card',
     description: 'A professional name card enhanced with augmented reality, revealing a 3D logo when scanned for a more engaging networking experience.',
-    type: 'Others',
+    type: 'Immersive Technology',
     image: projectImage4a,
     media: [
       {
