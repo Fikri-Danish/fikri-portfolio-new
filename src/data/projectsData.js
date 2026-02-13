@@ -272,7 +272,7 @@ export const projectsData = [
     description: 'A digital poster designed to promote a Plant-Based Food Trail event, highlighting vegetarian and vegan food options while raising awareness of the plant-based movement in Singapore.',
     type: 'Digital Design',
     image: projectImage7a,
-    overview: 'This awareness poster was created for a Plant-Based Food Trail event in collaboration with small businesses in Bedok. The design aims to educate participants about the plant-based movement, its benefits and challenges, and encourage engagement through visual storytelling and a QR code for more information. The overall theme aligns with the organisation’s brand colours of green and yellow, reinforced with food imagery and greenery elements.',
+    overview: 'This is an awareness poster about Plant-Based Food Trail. The design aims to educate participants about the plant-based movement, its benefits and challenges, and encourage engagement through visual storytelling and a QR code for more information. The overall theme aligns with the organisation’s brand colours of green and yellow, reinforced with food imagery and greenery elements.',
     technologies: ['Canva'],
     features: [
       'Use of green and yellow colour palette to align with the organisation’s branding',
