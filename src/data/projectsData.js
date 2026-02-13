@@ -269,7 +269,7 @@ export const projectsData = [
   {
     id: 7,
     title: 'Plant-Based Food Trail Awareness Poster',
-    description: 'A digital poster designed to promote a Plant-Based Food Trail event, highlighting vegetarian and vegan food options while raising awareness of the plant-based movement in Singapore.',
+    description: 'A digital poster designed to promote a Plant-Based Food Trail event, highlighting vegetarian and vegan food options while raising awareness of the plant-based movement',
     type: 'Digital Design',
     image: projectImage7a,
     overview: 'This is an awareness poster about Plant-Based Food Trail. The design aims to educate participants about the plant-based movement, its benefits and challenges, and encourage engagement through visual storytelling and a QR code for more information. The overall theme aligns with the organisation’s brand colours of green and yellow, reinforced with food imagery and greenery elements.',
