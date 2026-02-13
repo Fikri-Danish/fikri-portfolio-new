@@ -42,7 +42,7 @@ export const projectsData = [
     type: 'Web App Development',
     image: projectImage1a,
     overview: 'A comprehensive portfolio website designed to present my work as a Digital Design & Development student. The site serves as a central hub for potential employers, clients, and collaborators to explore my projects, understand my skill set, and get in touch.\n\nBuilt with modern web technologies, the portfolio emphasizes clean design, smooth navigation, and responsive layouts that work seamlessly across all devices.',
-    technologies: ['React', 'React Router', 'JavaScript', 'CSS3', 'HTML5', 'EmailJS'],
+    technologies: ['React', 'React Router', 'JavaScript', 'CSS3', 'HTML5', 'EmailJS', 'AI Assisted: Claude AI',],
     features: [
       'Fully responsive design that adapts to all screen sizes',
       'Dynamic project filtering by category (Web Dev, Mobile Dev, Design, Others)',

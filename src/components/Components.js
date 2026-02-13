@@ -305,18 +305,16 @@ export function About() {
       </div>
 
       <div className={`projects-title fade-in ${titleVisible ? 'visible' : ''}`}>
-        <h3>What I bring to the table</h3>
+        <h3>Learning & Growing</h3>
       </div>
 
       <div className={`about-description fade-in ${textVisible ? 'visible' : ''}`} ref={textRef}>
         <p>
-          I'm Fikri, a Digital Design & Development student who loves working with
-          creativity and technology. I enjoy learning how to make designs that are fun
-          and easy to use. On this site, you'll find my design ideas and projects.
-          I try to keep things simple and interactive, always improving my skills to
-          create better user experiences.
+          I’m Fikri, a Digital Design & Development student passionate about creativity and technology. I enjoy creating fun, user-friendly designs and building engaging web and mobile experiences.
         </p>
       </div>
+
+      <Skills />
 
       <div className={`about-button-container fade-in ${buttonVisible ? 'visible' : ''}`} ref={buttonRef}>
         <Link to="/aboutPage">
@@ -324,7 +322,6 @@ export function About() {
         </Link>
       </div>
 
-      <Skills />
     </section>
   );
 }
